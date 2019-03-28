@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+.error-text {
+    line-height: 1.25rem;
+    color: red;
+}
+
+.success-text {
+
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 10px;
+    border: 1px solild darkgrey;
+}

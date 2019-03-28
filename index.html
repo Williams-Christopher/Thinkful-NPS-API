@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment: NPS API</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>U.S. National Parks Search</h1>
+        <p>Submitted for Module 11, Checkpoint 7</p>
+    </header>
+    <main>
+        <form>
+            <label for="js-search-term">Search for: </label>
+            <input type="text" id="js-search-term" required placeholder="TX, MN, CA, etc" />
+            <label for="js-search-max-results"> Results:</label>
+            <input type="number" id="js-search-max-results" min="1" max="50" value="10" />
+            <input type="submit" value="Search" />
+        </form>
+        <section>
+            <p id="js-status-text"></p>
+            <ul id="js-results" class="results">
+                <!-- Dynamically add list items -->
+            </ul>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
