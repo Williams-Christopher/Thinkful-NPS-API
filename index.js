@@ -8,9 +8,18 @@
 let apiKey = 'as1AhtCZOZ0TGpPXXqvDrdXEi3LHfvdwsokJOb8u';
 let baseUrl = 'https://developer.nps.gov/api/v1/parks';
 
-function displayResults (responseJson) {
+function displayResults (json) {
     $('#js-status-text').text('Search results:').addClass('success-text');
-    console.log(responseJson);
+    console.log(json);
+    json.data.forEach(element => {
+        $('#js-results').append(
+            `<li>
+                <h2>${element.name}</h2>
+                <p>${element.description}</p>
+                <a href="${element.url}" target="_blank">${element.url}</a>
+            </li>`
+        )
+    });
 }
 
 function displayError(e) {
