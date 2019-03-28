@@ -5,20 +5,41 @@
 // determine success or failure
 // append the ul with list items containing the api results
 
-function displayResults () {
+let apiKey = 'as1AhtCZOZ0TGpPXXqvDrdXEi3LHfvdwsokJOb8u';
+let baseUrl = 'https://developer.nps.gov/api/v1';
 
-}
+// function displayResults () {
 
-function generateQueryString() {
+// }
 
-}
+// function callApi(queryString) {
 
-function callApi(searchTerm, requestedResults=10) {
+// }
 
-}
+// function generateQueryString(searchTerm, searchMaxResults = 10) {
+    
+// }
 
 function handleClick(){
-
+    $('form').submit ( event => {
+        event.preventDefault();
+        let searchTerm = $('#js-search-states').val();
+        let searchMaxResults = $('#js-search-max-results').val();
+        console.log(`${searchTerm}`);
+        //generateQueryString(searchTerm, searchMaxResults);
+    });
 }
 
-$(handleClick);
+function createSelectOptions() {
+    let stateCodes = Object.keys(us_states);
+    stateCodes.forEach(sc => {
+        $('#js-search-states').append(
+            `<option value="${sc}">${us_states[sc]}</option>`
+        )
+    });
+}
+
+$(function() {
+    createSelectOptions();
+    handleClick();
+});

@@ -19,3 +19,14 @@ li {
     margin: 10px;
     border: 1px solild darkgrey;
 }
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input[type = "submit"] {
+    font-size: 1.25rem;
+    display: block;
+    margin-top: 15px;
+}
