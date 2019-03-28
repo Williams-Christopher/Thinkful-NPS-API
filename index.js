@@ -6,27 +6,52 @@
 // append the ul with list items containing the api results
 
 let apiKey = 'as1AhtCZOZ0TGpPXXqvDrdXEi3LHfvdwsokJOb8u';
-let baseUrl = 'https://developer.nps.gov/api/v1';
+let baseUrl = 'https://developer.nps.gov/api/v1/parks';
 
-// function displayResults () {
+function displayResults (responseJson) {
+    $('#js-status-text').text('Search results:').addClass('success-text');
+    console.log(responseJson);
+}
 
-// }
+function displayError(e) {
+    $('#js-status-text').text(`An error occurred: ${e.message}`).addClass('error-text');
+}
 
-// function callApi(queryString) {
+function clearDisplayArea() {
+    $('#js-status-text').empty().removeClass('error-text','success-text');
+    $('#js-results').empty();
+}
 
-// }
+function makeAPIRequest(queryString) {
+    let url = baseUrl + '?' + queryString;
+    // make async request
+    // display result or error
+    fetch(url)
+    .then(response => {
+        if(response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(e => displayError(e));
+}
 
-// function generateQueryString(searchTerm, searchMaxResults = 10) {
-    
-// }
+function generateQueryString(searchTerm, searchMaxResults = 10) {
+    let queryString = `api_key=${apiKey}&stateCode=${encodeURIComponent(searchTerm)}&limit=${searchMaxResults}`
+    //console.log(queryString);
+    makeAPIRequest(queryString);
+}
 
-function handleClick(){
+function handleSubmit(){
     $('form').submit ( event => {
         event.preventDefault();
         let searchTerm = $('#js-search-states').val();
         let searchMaxResults = $('#js-search-max-results').val();
-        console.log(`${searchTerm}`);
-        //generateQueryString(searchTerm, searchMaxResults);
+
+        clearDisplayArea();
+
+        generateQueryString(searchTerm, searchMaxResults);
     });
 }
 
@@ -40,6 +65,8 @@ function createSelectOptions() {
 }
 
 $(function() {
+    // Create options elements for the all the states in us_states.js
     createSelectOptions();
-    handleClick();
+    // Listen for submit event
+    handleSubmit();
 });
