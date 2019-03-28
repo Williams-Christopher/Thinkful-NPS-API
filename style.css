@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
 }
 
 .error-text {
@@ -16,8 +17,9 @@ ul {
 }
 
 li {
-    margin: 10px;
-    border: 1px solild darkgrey;
+    padding: 5px;
+    margin: 20px;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.2), 0 10px 10px 0 rgba(0,0,0,.1);
 }
 
 label {
