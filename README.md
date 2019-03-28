@@ -1,6 +1,6 @@
 # Thinkful-NPS-API
 
-## Final assignemnt for Module 11
+## Final assignment for Module 11
 
 ## Requirements:
 * The user must be able to search for parks in one or more states.
@@ -11,7 +11,3 @@
   * Description
   * Website URL
 * The user must be able to make multiple searches and see only the results for the current search.
-
-* [ ] Task list with bullets?
-* [ ] list item 2
-* [ ] List item 3?
