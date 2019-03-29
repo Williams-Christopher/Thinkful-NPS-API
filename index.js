@@ -22,13 +22,18 @@ function displayResults (json) {
 }
 
 function parsePhysicalAddress(addresses) {
+    // Check the element zero of the address array to see if it's the physical address
+    // if not, then the physical address is in element 1
     let index = 0;
     if (addresses[index].type !== 'Physical') {
         index = 1;
     }
+    // I was hoping to do some string concatenation but this works
+    // All addresses have line1. Check lines 2 and 3 for a value and handle accordingly
     let address1 = addresses[index].line1;
     let address2 = addresses[index].line2 === '' ? `` : `, ${addresses[index].line2}`;
     let address3 = addresses[index].line3 === '' ? `` : `, ${addresses[index].line3}`;
+    // Bring it all together and return it
     return `${address1}${address2}${address3}, ${addresses[index].city}, ${addresses[index].statecode} ${addresses[index].postalcode} `;
 }
 
