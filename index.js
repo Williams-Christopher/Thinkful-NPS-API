@@ -1,9 +1,4 @@
-// listen for click
-// get values from the form
-// generate query parameters
-// submit query to api
-// determine success or failure
-// append the ul with list items containing the api results
+'use strict'
 
 let apiKey = 'as1AhtCZOZ0TGpPXXqvDrdXEi3LHfvdwsokJOb8u';
 let baseUrl = 'https://developer.nps.gov/api/v1/parks';
@@ -11,15 +6,30 @@ let baseUrl = 'https://developer.nps.gov/api/v1/parks';
 function displayResults (json) {
     $('#js-status-text').text('Search results:').addClass('success-text');
     console.log(json);
+
     json.data.forEach(element => {
+        let physicalAddress = parsePhysicalAddress(element.addresses);
+
         $('#js-results').append(
             `<li>
                 <h2>${element.name}</h2>
                 <p>${element.description}</p>
+                <a href="https://google.com/maps/search/${physicalAddress}" target="_blank">${physicalAddress}</a>
                 <a href="${element.url}" target="_blank">${element.url}</a>
             </li>`
         )
     });
+}
+
+function parsePhysicalAddress(addresses) {
+    let index = 0;
+    if (addresses[index].type !== 'Physical') {
+        index = 1;
+    }
+    let address1 = addresses[index].line1;
+    let address2 = addresses[index].line2 === '' ? `` : `, ${addresses[index].line2}`;
+    let address3 = addresses[index].line3 === '' ? `` : `, ${addresses[index].line3}`;
+    return `${address1}${address2}${address3}, ${addresses[index].city}, ${addresses[index].statecode} ${addresses[index].postalcode} `;
 }
 
 function displayError(e) {
@@ -47,7 +57,7 @@ function makeAPIRequest(queryString) {
 }
 
 function generateQueryString(searchTerm, searchMaxResults = 10) {
-    let queryString = `api_key=${apiKey}&stateCode=${encodeURIComponent(searchTerm)}&limit=${searchMaxResults}`
+    let queryString = `api_key=${apiKey}&stateCode=${encodeURIComponent(searchTerm)}&limit=${searchMaxResults}&fields=addresses`
     //console.log(queryString);
     makeAPIRequest(queryString);
 }

@@ -13,13 +13,21 @@
 }
 
 ul {
+    padding: 0;
     list-style: none;
+    max-width: 75%;
+    margin: 16px auto;
 }
 
 li {
     padding: 5px;
     margin: 20px;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,.2), 0 10px 10px 0 rgba(0,0,0,.1);
+}
+
+li a {
+    display: block;
+    margin: 5px auto auto auto;
 }
 
 label {
